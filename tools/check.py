@@ -50,7 +50,7 @@ def run_problem(problem):
         print('No main found for {}'.format(problem))
         return None
 
-    out = subprocess.check_output(main_script).strip()
+    out = subprocess.check_output(main_script, cwd=problem).strip()
     try:
         out_int = int(out)
     except ValueError:
