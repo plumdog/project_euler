@@ -4,6 +4,7 @@ import os
 import glob
 import subprocess
 import itertools
+import time
 
 
 ANSWERS_FILE = 'answers.txt'
@@ -21,12 +22,13 @@ def main():
 
     zipped = itertools.zip_longest(reference_answers, calculated_answers, fillvalue=False)
 
-    for problem_index, (ref_ans, cal_ans) in enumerate(zipped):
-        if cal_ans == False:
+    for problem_index, (ref_ans, cal_ans_and_time) in enumerate(zipped):
+        if cal_ans_and_time == False:
             print('No attempt made for Problem {}'.format(problem_index + 1))
         else:
+            cal_ans, t = cal_ans_and_time
             if (ref_ans == cal_ans):
-                print('Problem {} correct'.format(problem_index + 1))
+                print('Problem {} correct ({:.2}s)'.format(problem_index + 1, t))
             else:
                 print('Problem {} incorrect (ref: {} vs cal: {})'.format(problem_index + 1, ref_ans, cal_ans))
 
@@ -48,16 +50,19 @@ def run_problem(problem):
         main_script = glob.glob(p)[0]
     except IndexError:
         print('No main found for {}'.format(problem))
-        return None
+        return None, None
 
+    sta = time.time()
     out = subprocess.check_output(main_script, cwd=problem).strip()
+    dt = (time.time() - sta)
+
     try:
         out_int = int(out)
     except ValueError:
         print('No integer output found for {} ({} found instead)'.format(problem, out))
-        return None
-        
-    return out_int
+        return None, dt
+
+    return out_int, dt
 
 
 if __name__ == '__main__':
