@@ -1,19 +1,8 @@
 #include <iostream>
-#include <math.h>
+#include <prime.h>
 
 using namespace std;
 
-bool is_prime(int val) {
-	int upto = static_cast<int>(sqrt(static_cast<double>(val)));
-
-	for(int i = 2; i <= upto; ++i) {
-		if(val % i == 0) {
-			return false;
-		}
-	}
-
-	return true;
-}
 
 int main() {
 	int req = 10001;
