@@ -1,0 +1,5 @@
+# c and cpp compiled files
+*.out
+
+# java
+*.class
