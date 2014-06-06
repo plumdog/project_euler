@@ -2,25 +2,25 @@
 
 import functools
 
-@functools.lru_cache(maxsize=None)
+#@functools.lru_cache(maxsize=None)
 def collatz(n):
     if n % 2 == 0:
         return n // 2
     else:
         return 3*n + 1
 
-def collatz_chain(n):
+@functools.lru_cache(maxsize=None)
+def collatz_chain_length(n):
     if n == 1:
-        return []
+        return 1
     else:
-        return [n] + collatz_chain(collatz(n))
+        return 1 + collatz_chain_length(collatz(n))
 
 def chains(upto):
     longest_chain_length = 0
     value = None
     for i in range(1, upto):
-        print(i)
-        ch_len = len(collatz_chain(i))
+        ch_len = collatz_chain_length(i)
         if ch_len > longest_chain_length:
             longest_chain_length = ch_len
             value = i
