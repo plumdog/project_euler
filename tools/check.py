@@ -26,9 +26,9 @@ def main():
         if cal_ans_and_time == False:
             print('No attempt made for Problem {}'.format(problem_index + 1))
         else:
-            cal_ans, t = cal_ans_and_time
+            cal_ans, time_taken = cal_ans_and_time
             if (ref_ans == cal_ans):
-                print('Problem {} correct ({:.2}s)'.format(problem_index + 1, t))
+                print('Problem {} correct ({:.2f}s)'.format(problem_index + 1, time_taken))
             else:
                 print('Problem {} incorrect (ref: {} vs cal: {})'.format(problem_index + 1, ref_ans, cal_ans))
 
