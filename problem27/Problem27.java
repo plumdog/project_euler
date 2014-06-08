@@ -1,3 +1,5 @@
+import primality.Primality;
+
 public class Problem27 {
 	public static void main(String[] args) {
 		int lim = 999;
@@ -25,7 +27,7 @@ public class Problem27 {
 		int polyv;
 		for(int n = 0; n < 80; ++n) {
 			polyv = polyValue(a, b, n);
-			if(!isPrime(polyv)) {
+			if((polyv <= 0) || !Primality.isPrime(polyv)) {
 				return n;
 			}
 		}
@@ -35,19 +37,5 @@ public class Problem27 {
 
 	public static int polyValue(int a, int b, int n) {
 		return n*n + b*n + a;
-	}
-
-	public static boolean isPrime(int val) {
-		if(val <= 0) {
-			return false;
-		}
-
-		int upto = (int) Math.round(Math.sqrt(val));
-		for(int i = 2; i <= upto; ++i) {
-			if(val % i == 0) {
-				return false;
-			}
-		}
-		return true;
 	}
 }

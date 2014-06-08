@@ -1,6 +1,8 @@
 import java.util.Hashtable;
 import java.util.Arrays;
 
+import primality.Primality;
+
 public class Problem35 {
 	public static void main(String[] args) {
 		int max = 1000000;
@@ -15,7 +17,7 @@ public class Problem35 {
 	}
 
 	public static boolean allRotationPrime(int trial) {
-		if(!isPrime(trial)) {
+		if(!isPrimeHash(trial)) {
 			return false;
 		}
 
@@ -23,7 +25,7 @@ public class Problem35 {
 		char[] digits = rotate(origDigits);
 
 		while(!Arrays.equals(digits, origDigits)) {
-			if(!isPrime(fromCharArray(digits))) {
+			if(!isPrimeHash(fromCharArray(digits))) {
 				return false;
 			}
 
@@ -62,23 +64,13 @@ public class Problem35 {
 
 	public static Hashtable <Integer, Boolean> primeHashtable = new Hashtable<Integer, Boolean>();
 
-	public static boolean isPrime(int val) {
+	public static boolean isPrimeHash(int val) {
 		Boolean out = primeHashtable.get(val);
 		if(out == null) {
-			out = _isPrime(val);
+			out = Primality.isPrime(val);
 			primeHashtable.put(val, out);
 		}
 
 		return out;
-	}
-
-	protected static boolean _isPrime(int val) {
-		int upto = (int) Math.round(Math.sqrt(val));
-		for(int i = 2; i <= upto; ++i) {
-			if(val % i == 0) {
-				return false;
-			}
-		}
-		return true;
 	}
 }

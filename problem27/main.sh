@@ -1,3 +1,3 @@
 #!/bin/bash
 
-javac Problem27.java && java Problem27
+javac Problem27.java ../common/java/primality/Primality.java && java -classpath ../common/java/:. Problem27

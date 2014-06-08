@@ -1,3 +1,5 @@
+import primality.Primality;
+
 public class Problem5 {
 	public static void main(String[] args) {
 		System.out.println(smallestDivisible(20));
@@ -28,23 +30,11 @@ public class Problem5 {
 	public static int stepSize(int byAllUpTo) {
 		int step = 1;
 		for(int i = 2; i <= byAllUpTo; ++i) {
-			if(isPrime(i)) {
+			if(Primality.isPrime(i)) {
 				step *= i;
 			}
 		}
 
 		return step;
-	}
-
-	public static boolean isPrime(int val) {
-		int upto = (int) Math.round(Math.sqrt(val));
-
-		for(int i = 2; i <= upto; ++i) {
-			if(val % i == 0) {
-				return false;
-			}
-		}
-
-		return true;
 	}
 }
