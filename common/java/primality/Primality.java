@@ -3,6 +3,10 @@ package primality;
 public class Primality {
 
 	public static boolean isPrime(int val) {
+		if(val < 2) {
+			return false;
+		}
+
 		int upto = (int) Math.round(Math.sqrt(val));
 
 		for(int i = 2; i <= upto; ++i) {
