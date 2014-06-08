@@ -5,5 +5,10 @@
 # java
 *.class
 
+# python
+__pycache__/
+
 # problem specific
 problem22/names.txt
+
+
