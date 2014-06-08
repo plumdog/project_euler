@@ -24,8 +24,6 @@ int find_pythagorean(int num) {
 		for(j = i + 1; j < num - i - 1; ++j) {
 			k = num - i - j;
 
-			
-
 			if(is_pythagorean(i, j, k)) {
 				return i * j * k;
 			}

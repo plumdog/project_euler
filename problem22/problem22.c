@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-FILE *fr;
-
 int chscore(char ch) {
 	return (int) ch - 64;
 }
@@ -17,14 +15,13 @@ int namescore(char *line) {
 	return score;
 }
 
-
-
 int main(int argc, char *argv[]) {
 	if(argc != 2) {
 		printf("Expected just one filename, %d given", argc - 1);
 		return 1;
 	}
 
+	FILE *fr;
 	char line[80];
 	char *fname = argv[1];
 	int total = 0;
@@ -40,5 +37,3 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
-
-

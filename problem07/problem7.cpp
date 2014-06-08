@@ -20,9 +20,8 @@ int main() {
 		}
 
 		++value;
-    }
+	}
 
 	cout << value << endl;
-  	return 0;
+	return 0;
 }
-

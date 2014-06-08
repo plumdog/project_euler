@@ -2,7 +2,7 @@
 
 import functools
 
-#@functools.lru_cache(maxsize=None)
+
 def collatz(n):
     if n % 2 == 0:
         return n // 2
@@ -26,4 +26,6 @@ def chains(upto):
             value = i
     return value
 
-print(chains(1000000))
+
+if __name__ == '__main__':
+    print(chains(1000000))

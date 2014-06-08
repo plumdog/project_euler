@@ -8,6 +8,7 @@ from functools import reduce
 
 NUM = 500
 
+
 def prime_factors(num):
     if num <= 1:
         return defaultdict(int)
@@ -38,14 +39,17 @@ def prime_factors(num):
 def triangle(num):
     return num * (num + 1) // 2
 
+
 def first_tr_with_divisors(num):
     for i in itertools.count():
         tr = triangle(i)
         if divisors_count(tr) > num:
             return tr
 
+
 def divisors_count(i):
     return reduce(mul, [j + 1 for j in prime_factors(i).values()], 1)
+
 
 if __name__ == '__main__':
     print(first_tr_with_divisors(NUM))

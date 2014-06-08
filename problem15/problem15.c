@@ -2,9 +2,9 @@
 #include <math.h>
 
 /* We want to store results and not have to recalculate. We do this by
- storing an array. We need to map keys from {1..20} x {1..20} to ints,
- which we do with the hash function.
-*/
+ * storing an array. We need to map keys from {1..20} x {1..20} to ints,
+ * which we do with the hash function.
+ */
 int size = 20;
 long cached[401]; // max hash = 400 from 20*19 + 20
 

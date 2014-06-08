@@ -63,8 +63,6 @@ public class Problem33 {
 		}
 
 		prodFr = prodFr.lowestTerms();
-
 		System.out.println(prodFr.den);
 	}
 }
-

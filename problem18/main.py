@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 
+
 tr = [
     [75],
     [95, 64],
@@ -19,6 +20,7 @@ tr = [
     [63, 66,  4, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
     [ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23]]
 
+
 @lru_cache(maxsize=None)
 def tr_sum(row, col):
     try:
@@ -28,4 +30,6 @@ def tr_sum(row, col):
     else:
         return val + max(tr_sum(row + 1, col), tr_sum(row + 1, col + 1))
 
-print(tr_sum(0, 0))
+
+if __name__ == '__main__':
+    print(tr_sum(0, 0))

@@ -25,9 +25,9 @@ def unusual_products(ldigits, rdigits):
         b = digits_to_int(ldigits[i:])
         c = digits_to_int(rdigits)
 
-        cres = a * b
-        if sorted(str(cres)) == sorted(str(c)):
-            yield cres
+        c_res = a * b
+        if sorted(str(c_res)) == sorted(str(c)):
+            yield c_res
 
 
 def digits_to_int(digits):
