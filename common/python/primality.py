@@ -37,3 +37,30 @@ def prime_factors(num):
                 trial += 1
             else:
                 trial += 2
+
+def prime_sieve(upto):
+    nums = set(range(2, upto+1))
+    num = 2
+    while True:
+        if num in nums:
+            mult = 2
+            while True:
+                try:
+                    nums.remove(mult * num)
+                except KeyError:
+                    pass
+                if mult * num > upto:
+                    break
+                mult += 1
+            
+        elif num > upto:
+            return nums
+
+        num += 1
+
+
+if __name__ == '__main__':
+    print(prime_sieve(1000000))
+        
+            
+    
