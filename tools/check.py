@@ -53,7 +53,7 @@ def run_problem(problem):
         return None, None
 
     sta = time.time()
-    out = subprocess.check_output(main_script, cwd=problem).strip()
+    out = subprocess.check_output(main_script, cwd=problem).strip().decode('utf-8')
     dt = (time.time() - sta)
 
     try:
