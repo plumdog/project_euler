@@ -47,14 +47,13 @@ public class Problem42 {
 		return total;
 	}
 
-	/* This is very lazy and slow. */
+	/* From num = n(n+1)/2 we get n = (-1 + sqrt(1+8*num))/2
+	 * So we require that 1+8*num is an odd square, so that
+	 * is what we test for.
+	 */
 	public static boolean isTriangular(int num) {
-		for(int i = 1; i <= num; ++i) {
-			if(i*(i+1) / 2 == num) {
-				return true;
-			}
-		}
-
-		return false;
+		int val = 1+8*num;
+		int sqrt = (int) Math.sqrt(1+8*num);
+		return (val == sqrt*sqrt) && (sqrt % 2 == 1);
 	}
 }
