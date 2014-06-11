@@ -5,8 +5,12 @@ from collections import defaultdict
 
 @lru_cache(maxsize=None)
 def is_prime(num):
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
     top = int(math.floor(math.sqrt(num)))
-    for i in range(2, top + 1):
+    for i in range(3, top + 1, 2):
         if num % i == 0:
             return False
     return True
