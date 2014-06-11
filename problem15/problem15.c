@@ -6,7 +6,7 @@
  * which we do with the hash function.
  */
 int size = 20;
-long cached[401]; // max hash = 400 from 20*19 + 20
+long long cached[401]; // max hash = 400 from 20*19 + 20
 
 int hash(int x, int y) {
 	if(x > y) {
@@ -16,12 +16,12 @@ int hash(int x, int y) {
 	}
 }
 
-void insert(int x, int y, long result) {
+void insert(int x, int y, long long result) {
 	int hash_val = hash(x, y);
 	cached[hash_val] = result;
 }
 
-long get(int x, int y) {
+long long get(int x, int y) {
 	int hash_val = hash(x, y);
 	return cached[hash_val];
 }
@@ -31,12 +31,12 @@ long get(int x, int y) {
  * the number of paths from either of the two next steps. However, if
  * we have reached x = 0 or y = 0, then there is just one path.
  */
-long paths_from(int x, int y) {
+long long paths_from(int x, int y) {
 	if((x == 0) || (y == 0)) {
 		return 1;
 	}
 
-	long result = get(x, y);
+	long long result = get(x, y);
 
 	/* If we found a result in the cached results, then return it,
 	 * otherwise, calculate the result, store it in the cache,
@@ -51,6 +51,6 @@ long paths_from(int x, int y) {
 }
 
 int main() {
-	printf("%ld\n", paths_from(size, size));
+	printf("%lld\n", paths_from(size, size));
 	return 0;
 }
