@@ -1,39 +1,77 @@
 #include <math.h>
 #include <stdio.h>
+#include <prime.h>
 
-int digit(int num, int digit) {
-	if(digit == 0) {
-		return num % 10;
+
+int ipow(int base, int exp) {
+	if(exp == 0) {
+		return 1;
+	} else if(exp == 1) {
+		return base;
+	} else if(exp % 2 == 1) {
+		return base * ipow(base, exp - 1);
 	} else {
-		return (num % pow(10, digit + 1)) / digit;
+		int temp = ipow(base, exp / 2);
+		return temp * temp;
 	}
 }
 
-int * digit_replace(int num, int digit1, int digit2) {
-	int * nums[10];
+int add_digit_at(int num, int digit, int digit_pos) {
+	int left = num / ipow(10, digit_pos);
+	int right = num % ipow(10, digit_pos);
 
-	int digit_at1 = digit(num, digit1);
-	int digit_at2 = digit(num, digit2);
+	left *= 10;
+	left += digit;
 
-	num -= (digit_at1 * pow(10, digit1));
-	num -= (digit_at2 * pow(10, digit2));
+	return left * ipow(10, digit_pos) + right;
+}
 
-	int temp;
+int prime_family() {
+	//int num_digits = 2;
+	int trial_value1 = 0;
+	int trial_value2 = 0;
+	int prime_count = 0;
+	int smallest_prime_in_family = 0;
 
-	for(int i = 0; i < 10; ++i) {
-		nums[i] = num + (i * pow(10, digit1) + (i * pow(10, digit2)));
+	for(int num_digits = 3; num_digits < 9; ++num_digits) {
+		printf("num_digits = %d\n", num_digits);
+		for(int n = ipow(10, num_digits-1) + 1; n < ipow(10, num_digits); n+=2) {
+			if(n % 3 == 0) {
+				continue;
+			}
+			for(int digit1 = 0; digit1 <= num_digits; ++digit1) {
+				for(int digit2 = digit1 + 1; digit2 <= num_digits + 1; ++digit2) {
+					prime_count = 0;
+					smallest_prime_in_family = 0;
+					for(int trial_digit = 0; trial_digit < 10; ++trial_digit) {
+						trial_value1 = add_digit_at(n, trial_digit, digit1);
+						trial_value2 = add_digit_at(trial_value1, trial_digit, digit2);
+						if(is_prime(trial_value2)) {
+							if(!smallest_prime_in_family) {
+								smallest_prime_in_family = trial_value2;
+							}
+							++prime_count;
+						}
+						//printf("n=%d, trial_digit=%d, digit1=%d, digit2=%d, trial_value1=%d, trial_value2=%d\n", n, trial_digit, digit1, digit2, trial_value1, trial_value2);
+
+					}
+
+					if(prime_count >= 7) {
+						printf("prime_count == 7, smallest_prime_in_family = %d\n", smallest_prime_in_family);
+					}
+
+					if(prime_count >= 8) {
+						return smallest_prime_in_family;
+					}
+				}
+			}
+		}
 	}
 
-	return nums;
+	return 0;
 }
 
 int main(int argc, char *argv[]) {
-	int num = 56003;
-	int * replace_digits = digit_replace(num, 1, 2);
-
-	for(int i = 0; i < 10; ++i) {
-		printf("%d\n", replace_digits[i]);
-	}
-
+	prime_family();
 	return 0;
 }
