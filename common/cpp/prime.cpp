@@ -3,7 +3,11 @@
 bool is_prime(int val) {
 	int upto = static_cast<int>(sqrt(static_cast<double>(val)));
 
-	for(int i = 2; i <= upto; ++i) {
+	if(val % 2 == 0) {
+		return false;
+	}
+
+	for(int i = 3; i <= upto; i+=2) {
 		if(val % i == 0) {
 			return false;
 		}
