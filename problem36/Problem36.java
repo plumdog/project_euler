@@ -1,4 +1,3 @@
-import java.util.Hashtable;
 import java.util.Arrays;
 
 public class Problem36 {
