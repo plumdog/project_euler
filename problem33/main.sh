@@ -1,3 +1,3 @@
 #!/bin/bash
 
-javac Problem33.java && java Problem33
+javac Problem33.java ../common/java/fraction/Fraction.java && java -classpath ../common/java/:. Problem33
