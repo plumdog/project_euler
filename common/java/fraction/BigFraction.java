@@ -12,6 +12,11 @@ public class BigFraction {
 		this.den = den;
 	}
 
+	public BigFraction(int num, int den) {
+		this.num = BigInteger.valueOf(num);
+		this.den = BigInteger.valueOf(den);
+	}
+
 	public BigInteger num() {
 		return num;
 	}
