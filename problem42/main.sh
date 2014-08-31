@@ -5,7 +5,7 @@ NAMETMP="words_tmp.txt"
 
 if [ ! -f "$NAME" ]
 then
-	wget "https://projecteuler.net/project/words.txt" -q -O "$NAME" || exit 1
+	wget "https://projecteuler.net/project/resources/p042_words.txt" -q -O "$NAME" || exit 1
 	cat "$NAME" | tr ',', '\n' | sed -e 's/"//g' | cat > "$NAMETMP" && mv "$NAMETMP" "$NAME"
 fi
 
