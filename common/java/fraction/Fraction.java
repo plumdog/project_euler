@@ -1,6 +1,6 @@
 package fraction;
 
-public class Fraction {
+public class Fraction implements Comparable<Fraction> {
 	public final int num, den;
 	public Fraction(int num, int den) {
 		this.num = num;
@@ -16,7 +16,8 @@ public class Fraction {
 	}
 
 	public boolean isEqual(Fraction other) {
-		return this.num * other.den == other.num * this.den;
+		return compareTo(other) == 0;
+		
 	}
 
 	public Fraction lowestTerms() {
@@ -74,5 +75,13 @@ public class Fraction {
 
 	public String toString() {
 		return num + "/" + den;
+	}
+
+	public int compareTo(Fraction f) {
+		int v1 = this.num * f.den;
+		int v2 = f.num * this.den;
+		if(v1 == v2)
+			return 0;
+		return (v1 > v2) ? 1 : -1;
 	}
 }
