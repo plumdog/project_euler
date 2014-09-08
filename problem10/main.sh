@@ -1,3 +1,3 @@
 #!/bin/bash
 
-g++ -c ../common/cpp/prime.cpp -o ../common/cpp/prime.o && g++ problem10.cpp -o problem10.out -I../common/cpp ../common/cpp/prime.o && ./problem10.out
+gcc -c ../common/c/prime.c -o ../common/c/prime.o -std=c99 && gcc problem10.c -o problem10.out -I../common/c ../common/c/prime.o -lm -std=c99 && ./problem10.out

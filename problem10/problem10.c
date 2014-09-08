@@ -1,7 +1,5 @@
-#include <iostream>
+#include <stdio.h>
 #include <prime.h>
-
-using namespace std;
 
 
 int main() {
@@ -16,5 +14,5 @@ int main() {
 		}
 	}
 
-	cout << total << endl;
+	printf("%lld\n", total);
 }
