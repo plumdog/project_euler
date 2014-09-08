@@ -1,7 +1,5 @@
-#include <iostream>
+#include <stdio.h>
 #include <prime.h>
-
-using namespace std;
 
 
 int main() {
@@ -10,7 +8,7 @@ int main() {
 	int value = 2;
 	int prime_count = 0;
 
-	while(true) {
+	while(1) {
 		if(is_prime(value)) {
 			++prime_count;
 		}
@@ -22,6 +20,6 @@ int main() {
 		++value;
 	}
 
-	cout << value << endl;
+	printf("%d\n", value);
 	return 0;
 }
