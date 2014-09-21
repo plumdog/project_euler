@@ -3,6 +3,8 @@ Project Euler Solutions
 
 Because all great journeys start with plenty of ambition and a README.md file.
 
+[![Build Status](https://travis-ci.org/plumdog/project_euler.svg?branch=master)](https://travis-ci.org/plumdog/project_euler)
+
 Aims and Restrictions
 ---------------------
 
