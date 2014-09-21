@@ -55,7 +55,7 @@ def run_problem(problem):
     sta = time.time()
 
     try:
-        out = subprocess.check_output(main_script, cwd=problem).strip().decode('utf-8')
+        out = subprocess.check_output(main_script, cwd=problem, stderr=subprocess.STDOUT).strip().decode('utf-8')
     except subprocess.CalledProcessError as e:
         print('Error running main script. Output:')
         print(e.output.decode('utf-8'))
