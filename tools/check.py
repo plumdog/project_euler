@@ -53,7 +53,13 @@ def run_problem(problem):
         return None, None
 
     sta = time.time()
-    out = subprocess.check_output(main_script, cwd=problem).strip().decode('utf-8')
+
+    try:
+        out = subprocess.check_output(main_script, cwd=problem).strip().decode('utf-8')
+    except subprocess.CalledProcessError as e:
+        print('Error running main script. Output:')
+        print(e.output.decode('utf-8'))
+        return None, None
     dt = (time.time() - sta)
 
     try:
