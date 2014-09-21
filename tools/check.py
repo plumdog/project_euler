@@ -22,15 +22,21 @@ def main():
 
     zipped = itertools.zip_longest(reference_answers, calculated_answers, fillvalue=False)
 
+    success = True
+
     for problem_index, (ref_ans, cal_ans_and_time) in enumerate(zipped):
         if cal_ans_and_time == False:
             print('No attempt made for Problem {}'.format(problem_index + 1))
+            success = False
         else:
             cal_ans, time_taken = cal_ans_and_time
             if (ref_ans == cal_ans):
                 print('Problem {} correct ({:.2f}s)'.format(problem_index + 1, time_taken))
             else:
                 print('Problem {} incorrect (ref: {} vs cal: {})'.format(problem_index + 1, ref_ans, cal_ans))
+                success = False
+    if not success:
+        exit(1)
 
 
 def sorted_problems(root_dir):
