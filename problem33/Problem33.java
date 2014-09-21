@@ -38,7 +38,7 @@ public class Problem33 {
 			for(int den = num + 1; den <= 98; ++den) {
 				fr = new FakeCancelFraction(num, den);
 				canFr = fr.fakeCancel();
-				if((canFr != null) && fr.isEqual(canFr)) {
+				if((canFr != null) && fr.equals(canFr)) {
 					prodFr = new FakeCancelFraction(prodFr.times(fr));
 				}
 			}

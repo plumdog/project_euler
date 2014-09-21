@@ -15,9 +15,14 @@ public class Fraction implements Comparable<Fraction> {
 		return den;
 	}
 
-	public boolean isEqual(Fraction other) {
-		return compareTo(other) == 0;
-		
+	@Override
+	public boolean equals(Object other) {
+		if(other instanceof Fraction) {
+			Fraction otherFr = (Fraction) other;
+			return compareTo(otherFr) == 0;
+		}
+
+		return false;
 	}
 
 	public Fraction lowestTerms() {
@@ -83,5 +88,10 @@ public class Fraction implements Comparable<Fraction> {
 		if(v1 == v2)
 			return 0;
 		return (v1 > v2) ? 1 : -1;
+	}
+
+	@Override
+	public int hashCode() {
+		return new Double((double) num / den).hashCode();
 	}
 }
