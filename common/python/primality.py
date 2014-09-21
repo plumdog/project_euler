@@ -62,6 +62,21 @@ def prime_sieve(upto):
 
         num += 1
 
+def phi(n):
+    """
+    phi(n) = n*sum_{p|n} (1 - 1/p)
+    phi(n) = n*sum_{p|n} (p-1)/p
+    """
+    top = n
+    bot = 1
+
+    pfactors = prime_factors(n)
+
+    for p, count in pfactors.items():
+        top *= (p - 1)
+        bot *= p
+    return top // bot
+
 
 if __name__ == '__main__':
     print(prime_sieve(1000000))
