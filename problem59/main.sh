@@ -11,7 +11,7 @@ function error() {
 function download() {
 	if [ ! -f "$NAME" ]
 	then
-		wget -q "$ADDRESS" -O "$NAME" || error "Download failed."
+		wget --no-check-certificate -q "$ADDRESS" -O "$NAME" || error "Download failed."
 	fi
 }
 
