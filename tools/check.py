@@ -56,7 +56,7 @@ def check_one(root_dir, reference_answers, problem_number):
         ref_answer = None
 
     run_problem_result = run_problem(os.path.join(root_dir, problem_dir))
-    if not _check_problem_answer(problem_number, ref_answer, run_problem_result, print_answer=True):
+    if not _check_problem_answer(problem_number - 1, ref_answer, run_problem_result, print_answer=True):
         exit(1)
 
 
