@@ -9,6 +9,7 @@
 __pycache__/
 
 # problem specific
+problem13/numbers.txt
 problem22/names.txt
 problem42/words.txt
 problem54/poker.txt
