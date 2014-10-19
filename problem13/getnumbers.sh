@@ -9,7 +9,7 @@ START="<div style='font-family:courier new;font-size:10pt;text-align:center;'>"
 END="</div>"
 
 # Get the full html
-HTML="`wget -qO- https://projecteuler.net/problem=13`"
+HTML="`wget --no-check-certificate -qO- https://projecteuler.net/problem=13`"
 
 # Trim from the start line to the end. (This could probably be made
 # neater.
