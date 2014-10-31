@@ -9,12 +9,14 @@ def collatz(n):
     else:
         return 3*n + 1
 
+
 @functools.lru_cache(maxsize=None)
 def collatz_chain_length(n):
     if n == 1:
         return 1
     else:
         return 1 + collatz_chain_length(collatz(n))
+
 
 def chains(upto):
     longest_chain_length = 0

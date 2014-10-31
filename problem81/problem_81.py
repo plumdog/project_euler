@@ -3,7 +3,9 @@
 import sys
 import functools
 
+
 matrix = None
+
 
 def main():
     global matrix
@@ -26,7 +28,6 @@ def shortest_path(x, y):
     right = shortest_path(x+1, y)
     down = shortest_path(x, y+1)
 
-    
     if (right == float('inf')) and (down == float('inf')):
         # then we're in the bottom right. Just return the value here
         return value
@@ -34,6 +35,7 @@ def shortest_path(x, y):
         # otherwise, return the value here plus the lesser of the two
         # paths
         return value + min(right, down)
+
 
 if __name__ == '__main__':
     main()

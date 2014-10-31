@@ -9,6 +9,7 @@ import collections
 import functools
 import itertools
 
+
 def main():
     max_ = 5000
     primes = prime_sieve(100)

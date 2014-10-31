@@ -4,6 +4,7 @@ import sys
 import string
 import itertools
 
+
 def main():
     with open(sys.argv[1]) as f:
         nums = [int(c) for c in f.readline().split(',')]

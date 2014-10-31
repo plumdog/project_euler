@@ -16,10 +16,13 @@ def prime_factors(num):
 
 def main():
     for i in count(1):
-        if (len(prime_factors(i)) >= 4) and (len(prime_factors(i+1)) >= 4) and (len(prime_factors(i+2)) >= 4) and (len(prime_factors(i+3)) >= 4):
+        if (len(prime_factors(i)) >= 4) and \
+           (len(prime_factors(i+1)) >= 4) and \
+           (len(prime_factors(i+2)) >= 4) and \
+           (len(prime_factors(i+3)) >= 4):
             print(i)
             return
-        
+
 
 if __name__ == '__main__':
     main()

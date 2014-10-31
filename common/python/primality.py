@@ -42,6 +42,7 @@ def prime_factors(num):
             else:
                 trial += 2
 
+
 def prime_sieve(upto):
     nums = set(range(2, upto+1))
     num = 2
@@ -56,11 +57,12 @@ def prime_sieve(upto):
                 if mult * num > upto:
                     break
                 mult += 1
-            
+
         elif num > upto:
             return nums
 
         num += 1
+
 
 def phi(n):
     """
@@ -80,6 +82,3 @@ def phi(n):
 
 if __name__ == '__main__':
     print(prime_sieve(1000000))
-        
-            
-    

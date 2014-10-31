@@ -4,6 +4,7 @@ import math
 import fractions
 import collections
 
+
 def main():
     max_ = 1500000
 

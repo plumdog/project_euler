@@ -5,6 +5,7 @@ sys.path.insert(0, '../common/python/')
 
 from primality import prime_sieve
 
+
 def main():
     max_prime = 10000
     max_ = 10000000
@@ -25,9 +26,10 @@ def main():
                 if prod > max_:
                     break
 
-                phi = (p1 - 1) * (p2  - 1)
+                phi = (p1 - 1) * (p2 - 1)
                 ratio = prod / phi
-                if (sorted(str(phi)) == sorted(str(prod))) and (ratio < best_ratio):
+                if (sorted(str(phi)) == sorted(str(prod))) and \
+                   (ratio < best_ratio):
                     best_phi = phi
                     best_val = prod
                     best_ratio = ratio

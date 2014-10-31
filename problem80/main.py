@@ -20,7 +20,9 @@ def main():
 
 
 def find_sqrt(num):
-    return interval_bisect(decimal.Decimal(0), decimal.Decimal(num), decimal.Decimal(num))
+    return interval_bisect(decimal.Decimal(0),
+                           decimal.Decimal(num),
+                           decimal.Decimal(num))
 
 
 def is_square(num):

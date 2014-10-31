@@ -2,11 +2,13 @@
 
 from itertools import permutations
 
+
 # always:
 # [1digit] * [4digit] = [4digit]
 # or
 # [2digit] * [3digit] = [4digit]
 DIGITS = 10
+
 
 def main():
     unusuals = set()
@@ -32,7 +34,7 @@ def unusual_products(ldigits, rdigits):
 
 def digits_to_int(digits):
     return int(''.join(str(i) for i in digits))
-        
+
 
 if __name__ == '__main__':
     main()

@@ -20,13 +20,12 @@ def main():
     # And we can skip 1 digit, because we know 7 is the largest
     # possible, and that's what we set maxprime to start with.
     maxprime = 7
-    for n in [4,5,7]:
-        for digits in permutations(range(1, n+1)):
+    for n in [4, 5, 7]:
+        for digits in permutations(range(1, n + 1)):
             num = int(''.join(str(i) for i in digits))
             if (num > maxprime) and is_prime(num):
                 maxprime = num
     print(maxprime)
-                
 
 
 if __name__ == '__main__':

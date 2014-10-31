@@ -17,7 +17,7 @@ def main():
 
     for val in count(1):
         if len(str(fib(val))) >= strlen:
-            break;
+            break
 
     print(val)
 

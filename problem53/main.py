@@ -3,12 +3,15 @@
 from functools import lru_cache
 import math
 
+
 @lru_cache(maxsize=None)
 def factorial(n):
     return math.factorial(n)
 
+
 def choose(n, r):
     return factorial(n) / (factorial(r) * factorial(n-r))
+
 
 def main():
     max_ = 1000000

@@ -13,6 +13,7 @@ def int_permutations(num):
         if out > num:
             yield out
 
+
 def main():
     for a in range(1000, 10000):
         if a == 1487:
@@ -25,6 +26,7 @@ def main():
             if c in perms and all(is_prime(x) for x in seq):
                 print(''.join(str(x) for x in seq))
                 return
+
 
 if __name__ == '__main__':
     main()

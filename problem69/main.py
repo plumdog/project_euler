@@ -11,6 +11,7 @@ phi(n) = n*sum_{p|n} (1 - 1/p)
 n/phi(n) = sum_{p|n} p/(p - 1)
 """
 
+
 def n_over_phi(n):
     top = 1
     bot = 1
@@ -33,8 +34,7 @@ def maximise_n_over_phi(upto):
             max_value = n_over_phi_
             max_n = n
     return max_n
-            
-        
+
 
 def main():
     print(maximise_n_over_phi(1000000))

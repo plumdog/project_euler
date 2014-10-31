@@ -3,7 +3,9 @@
 from functools import lru_cache
 from itertools import count
 
+
 max_ = 4000000
+
 
 @lru_cache(maxsize=None)
 def fib(n):
@@ -11,6 +13,7 @@ def fib(n):
         return 1
     else:
         return fib(n - 1) + fib(n - 2)
+
 
 def main():
     sum_ = 0

@@ -19,7 +19,8 @@ def insert_digits(num, positions, digit):
 
 
 def positions(full_length, pos_length):
-    return set(sorted(p for p in itertools.permutations(range(full_length), pos_length) if list(sorted(p)) == list(p)))
+    return set(sorted(p for p in itertools.permutations(
+        range(full_length), pos_length) if list(sorted(p)) == list(p)))
 
 
 def main():
@@ -33,7 +34,8 @@ def main():
                 ps = []
                 for digit in range(10):
                     trial = insert_digits(num, pos, digit)
-                    if (len(str(trial)) == len(str(num)) + num_digits) and is_prime(insert_digits(num, pos, digit)):
+                    if (len(str(trial)) == len(str(num)) + num_digits) \
+                       and is_prime(insert_digits(num, pos, digit)):
                         ps.append(trial)
                         count += 1
                 if count >= 8:

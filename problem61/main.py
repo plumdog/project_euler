@@ -6,17 +6,22 @@ import itertools
 def p3(n):
     return n * (n+1) // 2
 
+
 def p4(n):
     return n*n
+
 
 def p5(n):
     return n*(3*n-1) // 2
 
+
 def p6(n):
     return n*(2*n-1)
 
+
 def p7(n):
     return n*(5*n-3) // 2
+
 
 def p8(n):
     return n*(3*n-2)
@@ -42,7 +47,8 @@ def is_one_of_each(fours, tup):
     for v, (k, vs) in itertools.product(tup, fours.items()):
         if v in vs:
             count[v].add(k)
-    return any(sorted(order) == [3,4,5,6,7,8] for order in itertools.product(*count.values()))
+    return any(sorted(order) == [3, 4, 5, 6, 7, 8] for order
+               in itertools.product(*count.values()))
 
 
 def arc(v1, v2):
@@ -90,7 +96,9 @@ class Graph(object):
         paths = []
         for node in self.adj[start]:
             if node not in path:
-                paths.extend(self.find_all_paths(node, end, path, max_length=max_length))
+                paths.extend(
+                    self.find_all_paths(
+                        node, end, path, max_length=max_length))
         return paths
 
     def find_cycles_of_length(self, n):
@@ -99,11 +107,12 @@ class Graph(object):
         cycles = set()
         for start, neighbours in self.adj.items():
             for neighbour in neighbours:
-                for path in self.find_all_paths(neighbour, start, max_length=n-1):
+                for path in self.find_all_paths(
+                        neighbour, start, max_length=n-1):
                     if len(path) == n:
                         cycles.add(tuple(sorted(path)))
         return cycles
-        
+
 
 if __name__ == '__main__':
     main()

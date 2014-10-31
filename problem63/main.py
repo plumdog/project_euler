@@ -6,6 +6,7 @@ import itertools
 logic to back that up though.
 """
 
+
 def main():
     count = 0
     for i in range(22):

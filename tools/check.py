@@ -10,42 +10,50 @@ import sys
 
 ANSWERS_FILE = 'answers.txt'
 
+
 def check_all(root_dir, reference_answers):
     problems = sorted_problems(root_dir)
     calculated_answers = (run_problem(problem) for problem in problems)
 
-    zipped = itertools.zip_longest(reference_answers, calculated_answers, fillvalue=False)
+    zipped = itertools.zip_longest(
+        reference_answers, calculated_answers, fillvalue=False)
 
     incorrect = 0
 
     for problem_index, (ref_ans, cal_ans_and_time) in enumerate(zipped):
-        result = _check_problem_answer(problem_index, ref_ans, cal_ans_and_time)
+        result = _check_problem_answer(
+            problem_index, ref_ans, cal_ans_and_time)
         if not result:
             incorrect += 1
     if incorrect > 0:
-        print('{} problems checked, {} incorrect'.format(len(problems), incorrect))
+        print('{} problems checked, {} incorrect'.format(
+            len(problems), incorrect))
         exit(1)
     else:
-        print('{} problems checked, all correct'.format(len(problems)))
+        print('{} problems checked, all correct'.format(
+            len(problems)))
 
 
-def _check_problem_answer(problem_index, reference_answer, run_problem_result, print_answer=False):
-    if run_problem_result == False:
+def _check_problem_answer(problem_index, reference_answer,
+                          run_problem_result, print_answer=False):
+    if run_problem_result is False:
         print('No attempt made for Problem {}'.format(problem_index + 1))
         return False
     else:
         cal_ans, time_taken = run_problem_result
         if (reference_answer == cal_ans):
             if print_answer:
-                print('Problem {} correct: {} ({:.2f}s)'.format(problem_index + 1, cal_ans, time_taken))
+                print('Problem {} correct: {} ({:.2f}s)'.format(
+                    problem_index + 1, cal_ans, time_taken))
             else:
-                print('Problem {} correct ({:.2f}s)'.format(problem_index + 1, time_taken))
+                print('Problem {} correct ({:.2f}s)'.format(
+                    problem_index + 1, time_taken))
 
             return True
         else:
-            print('Problem {} incorrect (ref: {} vs cal: {})'.format(problem_index + 1, reference_answer, cal_ans))
+            print('Problem {} incorrect (ref: {} vs cal: {})'.format(
+                problem_index + 1, reference_answer, cal_ans))
             return False
-
 
 
 def check_one(root_dir, reference_answers, problem_number):
@@ -56,7 +64,8 @@ def check_one(root_dir, reference_answers, problem_number):
         ref_answer = None
 
     run_problem_result = run_problem(os.path.join(root_dir, problem_dir))
-    if not _check_problem_answer(problem_number - 1, ref_answer, run_problem_result, print_answer=True):
+    if not _check_problem_answer(problem_number - 1, ref_answer,
+                                 run_problem_result, print_answer=True):
         exit(1)
 
 
@@ -82,7 +91,10 @@ def run_problem(problem):
     sta = time.time()
 
     try:
-        out = subprocess.check_output(main_script, cwd=problem, stderr=subprocess.STDOUT).strip().decode('utf-8')
+        out = subprocess.check_output(
+            main_script,
+            cwd=problem,
+            stderr=subprocess.STDOUT).strip().decode('utf-8')
     except subprocess.CalledProcessError as e:
         print('Error running main script. Output:')
         print(e.output.decode('utf-8'))
@@ -92,7 +104,8 @@ def run_problem(problem):
     try:
         out_int = int(out)
     except ValueError:
-        print('No integer output found for {} ({} found instead)'.format(problem, out))
+        print('No integer output found for {} ({} found instead)'.format(
+            problem, out))
         return None, dt
 
     return out_int, dt

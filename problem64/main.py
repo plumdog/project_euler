@@ -38,7 +38,8 @@ class Surd(object):
         return Surd(self.b, self.c + num*self.d, self.d, self.n, reduce=False)
 
     def recip(self):
-        return Surd(self.d*self.b, -self.d*self.c, self.b*self.b*self.n - self.c*self.c, self.n)
+        return Surd(self.d*self.b, -self.d*self.c,
+                    self.b*self.b*self.n - self.c*self.c, self.n)
 
     def val(self):
         return (self.b*math.sqrt(self.n) + self.c) / self.d
@@ -91,7 +92,8 @@ def recurring_frac_length(num):
 
 def main():
     MAX = 10000
-    nums = [recurring_frac_length(num) for num in range(1, MAX) if not is_square(num)]
+    nums = [recurring_frac_length(num) for num in range(1, MAX)
+            if not is_square(num)]
     odd_nums = [n for n in nums if (n % 2 == 1)]
     print(len(odd_nums))
 

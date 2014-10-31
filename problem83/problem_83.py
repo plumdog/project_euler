@@ -4,7 +4,9 @@ import sys
 import functools
 import collections
 
+
 matrix = None
+
 
 def main():
     global matrix
@@ -43,26 +45,8 @@ def main():
             if (0 <= cnum-1 < matrix_size):
                 g.add_arc((lnum, cnum-1), (lnum, cnum), value)
 
-    route, cost = a_star(g, (0,0), (matrix_size-1,matrix_size-1))
+    route, cost = a_star(g, (0, 0), (matrix_size-1, matrix_size-1))
     print(cost + matrix[0][0])
-    #print(matrix)
-
-
-def test():
-    g = WeightedGraph()
-    g.add_node((0,0))
-    g.add_node((0,1))
-    g.add_node((1,0))
-    g.add_node((1,1))
-
-    g.add_arc((0,0), (0,1), 1)
-    g.add_arc((0,0), (1,0), 10)
-
-    g.add_arc((0,1), (1,1), 100)
-    g.add_arc((1,0), (1,1), 10)
-
-    print(g)
-    print(a_star(g, (0,0), (1,1)))
 
 
 def a_star(graph, start, goal, heuristic=None):
@@ -87,7 +71,8 @@ def a_star(graph, start, goal, heuristic=None):
     f_score[start] = g_score[start] + heuristic(start, goal)
 
     while openset:
-        open_fscores = {node: score for node, score in f_score.items() if node in openset}
+        open_fscores = {node: score for node, score in
+                        f_score.items() if node in openset}
         current = min(open_fscores, key=open_fscores.get)
         if current == goal:
             return reconstruct_path(came_from, goal)
@@ -99,14 +84,15 @@ def a_star(graph, start, goal, heuristic=None):
                 continue
             tentative_g_score = g_score[current] + weight
 
-            if neighbour not in openset or tentative_g_score < g_score[neighbour]:
+            if neighbour not in openset or \
+               tentative_g_score < g_score[neighbour]:
                 came_from[neighbour] = current
                 g_score[neighbour] = tentative_g_score
-                f_score[neighbour] = g_score[neighbour] + heuristic(neighbour, goal)
+                f_score[neighbour] = (g_score[neighbour] +
+                                      heuristic(neighbour, goal))
                 if neighbour not in openset:
                     openset.add(neighbour)
     return None
-    
 
 
 class WeightedGraph(object):
@@ -136,8 +122,7 @@ class WeightedGraph(object):
         for source, targets_and_weights in sorted(neighbours.items()):
             out.append(str(source) + ':\t' + str(targets_and_weights))
         return '\n'.join(out)
-                
-        
+
 
 if __name__ == '__main__':
     main()

@@ -2,6 +2,7 @@
 
 from itertools import permutations
 
+
 def range_ten_excluding(exc=()):
     return (i for i in range(1, 11) if i not in exc)
 rtx = range_ten_excluding
@@ -34,7 +35,8 @@ def reorder_result(result):
 
 def concat_ordered_result(ordered_result):
     """
-    [(2, 4, 10), (5, 10, 1), (8, 1, 7), (6, 7, 3), (9, 3, 4)] -> 24105101817673934
+    [(2, 4, 10), (5, 10, 1), (8, 1, 7), (6, 7, 3), (9, 3, 4)]
+    -> 24105101817673934
     """
     return int(''.join(''.join(str(i) for i in tup) for tup in ordered_result))
 
@@ -71,17 +73,22 @@ def main():
                         for i8 in rtx((i1, i2, i3, i4, i5, i6, i7)):
                             total = i1 + i6 + i8
                             i9 = total - i1 - i2
-                            if (i9 < 1) or (i9 > 10) or (i9 in (i1, i2, i3, i4, i5, i6, i7, i8)):
+                            if (i9 < 1) or (i9 > 10) or \
+                               (i9 in (i1, i2, i3, i4, i5, i6, i7, i8)):
                                 continue
                             if i9 + i3 + i4 != total:
                                 continue
                             i10 = total - i6 - i7
-                            if (i10 < 1) or (i10 > 10) or (i10 in (i1, i2, i3, i4, i5, i6, i7, i8, i9)):
+                            if (i10 < 1) or (i10 > 10) or \
+                               (i10 in (i1, i2, i3, i4, i5, i6, i7, i8, i9)):
                                 continue
                             if i3 + i10 + i5 != total:
                                 continue
-                            result_list = [(i2, i9, i1), (i8, i1, i6), (i7, i6, i10), (i5, i10, i3), (i4, i3, i9)]
-                            result = concat_ordered_result(reorder_result(result_list))
+                            result_list = [
+                                (i2, i9, i1), (i8, i1, i6), (i7, i6, i10),
+                                (i5, i10, i3), (i4, i3, i9)]
+                            result = concat_ordered_result(
+                                reorder_result(result_list))
                             if len(str(result)) == 16:
                                 result_strings.append(result)
 

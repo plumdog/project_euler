@@ -3,7 +3,9 @@
 import sys
 import functools
 
+
 matrix = None
+
 
 def main():
     global matrix

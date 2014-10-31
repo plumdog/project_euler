@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 URL = 'https://projecteuler.net'
 
+
 def lookup(problem_number):
     resp = requests.get(URL + '/problem=' + str(problem_number))
     html = resp.content.decode('utf-8')

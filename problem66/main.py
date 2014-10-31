@@ -38,7 +38,8 @@ class Surd(object):
         return Surd(self.b, self.c + num*self.d, self.d, self.n)
 
     def recip(self):
-        return Surd(self.d*self.b, -self.d*self.c, self.b*self.b*self.n - self.c*self.c, self.n)
+        return Surd(self.d*self.b, -self.d*self.c,
+                    self.b*self.b*self.n - self.c*self.c, self.n)
 
     def val(self):
         return (self.b*math.sqrt(self.n) + self.c) / self.d

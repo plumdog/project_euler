@@ -52,7 +52,7 @@ def num_piles(num):
             total -= value % MOD
         else:
             total += value % MOD
-        
+
     CACHE[num] = total
     return total
 
