@@ -1,6 +1,7 @@
 import math
 from functools import lru_cache
 from collections import defaultdict
+from itertools import combinations
 
 
 @lru_cache(maxsize=None)
@@ -36,6 +37,34 @@ def prime_factors(num):
             parent = prime_factors(num_ // trial)
             parent[trial] += 1
             return parent
+        else:
+            if trial == 2:
+                trial += 1
+            else:
+                trial += 2
+
+@lru_cache(maxsize=None)
+def factors(num):
+    if num <= 1:
+        return defaultdict(int)
+
+    divs = set()
+
+    trial = 2
+    num_ = num
+    top = num // 2
+
+    while True:
+        if trial > top:
+            return set([1])
+
+        if num_ % trial == 0:
+            parent = factors(num_ // trial)
+            all_ = set()
+            for p in parent:
+                all_.add(p)
+                all_.add(p * trial)
+            return all_
         else:
             if trial == 2:
                 trial += 1
