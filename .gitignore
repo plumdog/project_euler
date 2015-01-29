@@ -9,17 +9,17 @@
 __pycache__/
 
 # problem specific
-problem13/numbers.txt
-problem22/names.txt
-problem42/words.txt
-problem54/poker.txt
-problem59/cipher1.txt
-problem67/triangle.txt
-problem79/keylog.txt
-problem81/matrix.txt
-problem82/matrix.txt
-problem83/matrix.txt
-problem89/roman.txt
-problem96/sudoku.txt
-problem98/words.txt
-problem99/base_exp.txt
+problem013/numbers.txt
+problem022/names.txt
+problem042/words.txt
+problem054/poker.txt
+problem059/cipher1.txt
+problem067/triangle.txt
+problem079/keylog.txt
+problem081/matrix.txt
+problem082/matrix.txt
+problem083/matrix.txt
+problem089/roman.txt
+problem096/sudoku.txt
+problem098/words.txt
+problem099/base_exp.txt
