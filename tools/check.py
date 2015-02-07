@@ -57,7 +57,7 @@ def _check_problem_answer(problem_index, reference_answer,
 
 
 def check_one(root_dir, reference_answers, problem_number):
-    problem_dir = 'problem%02d' % (problem_number,)
+    problem_dir = 'problem%03d' % (problem_number,)
     try:
         ref_answer = list(reference_answers)[problem_number - 1]
     except IndexError:
