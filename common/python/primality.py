@@ -46,9 +46,7 @@ def prime_factors(num):
 @lru_cache(maxsize=None)
 def factors(num):
     if num <= 1:
-        return defaultdict(int)
-
-    divs = set()
+        return {1}
 
     trial = 2
     num_ = num
@@ -56,7 +54,7 @@ def factors(num):
 
     while True:
         if trial > top:
-            return set([1])
+            return {1, num}
 
         if num_ % trial == 0:
             parent = factors(num_ // trial)
