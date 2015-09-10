@@ -5,11 +5,14 @@
 # from there to the next closing div tag.
 FNAME="$1"
 
-START="<div style='font-family:courier new;font-size:10pt;text-align:center;'>"
+       
+START="<div style=\"font-family:'courier new';font-size:10pt;text-align:center;\">"
 END="</div>"
 
 # Get the full html
 HTML="`wget --no-check-certificate -qO- https://projecteuler.net/problem=13`"
+
+
 
 # Trim from the start line to the end. (This could probably be made
 # neater.
@@ -18,8 +21,8 @@ ENDLINE=$(echo "$HTML" | wc -l)
 HTML=$(echo "$HTML" | sed -n "$STARTLINE,$ENDLINE""p")
 
 # Trim from the start to the first closing tag.
-ENDLINE=$(($(echo "$HTML" | grep -n "$END" | head -n 1 | gawk '{print $1}' FS=":") - 1))
-HTML=$(echo "$HTML" | sed -n "1,$ENDLINE""p")
+ENDLINE=$(($(echo "$HTML" | grep -n "$END" | head -n 1 | gawk '{print $1}' FS=":")))
+HTML=$(echo "$HTML" | sed -n "1,$ENDLINE""p" | sed -e 's|</div>||')
 
 # Remove all of the <br />s
 echo "$HTML" | sed -e 's|<br />||g' > "$FNAME"

@@ -13,18 +13,24 @@ ANSWERS_FILE = 'answers.txt'
 
 def check_all(root_dir, reference_answers):
     problems = sorted_problems(root_dir)
-    calculated_answers = (run_problem(problem) for problem in problems)
+    calculated_answer_sets = (run_problem_set(problem) for problem in problems)
 
     zipped = itertools.zip_longest(
-        reference_answers, calculated_answers, fillvalue=False)
+        reference_answers, calculated_answer_sets, fillvalue=False)
 
     incorrect = 0
 
-    for problem_index, (ref_ans, cal_ans_and_time) in enumerate(zipped):
-        result = _check_problem_answer(
-            problem_index, ref_ans, cal_ans_and_time)
-        if not result:
-            incorrect += 1
+    for problem_index, (ref_ans, result_set) in enumerate(zipped):
+        results = []
+        if result_set:
+            for sub_dir_name, cal_ans_and_time in result_set:
+                result = _check_problem_answer(
+                    sub_dir_name, problem_index, ref_ans, cal_ans_and_time)
+                results.append(result)
+            if not all(results):
+                incorrect += 1
+        else:
+            print('{} not attempted'.format(problem_index + 1))
     if incorrect > 0:
         print('{} problems checked, {} incorrect'.format(
             len(problems), incorrect))
@@ -34,26 +40,22 @@ def check_all(root_dir, reference_answers):
             len(problems)))
 
 
-def _check_problem_answer(problem_index, reference_answer,
+def _check_problem_answer(sub_dir_name, problem_index, reference_answer,
                           run_problem_result, print_answer=False):
-    if run_problem_result is False:
-        print('No attempt made for Problem {}'.format(problem_index + 1))
-        return False
-    else:
-        cal_ans, time_taken = run_problem_result
-        if (reference_answer == cal_ans):
-            if print_answer:
-                print('Problem {} correct: {} ({:.2f}s)'.format(
-                    problem_index + 1, cal_ans, time_taken))
-            else:
-                print('Problem {} correct ({:.2f}s)'.format(
-                    problem_index + 1, time_taken))
-
-            return True
+    cal_ans, time_taken = run_problem_result
+    if (reference_answer == cal_ans):
+        if print_answer:
+            print('Problem {} ({}) correct: {} ({:.2f}s)'.format(
+                problem_index + 1, sub_dir_name, cal_ans, time_taken))
         else:
-            print('Problem {} incorrect (ref: {} vs cal: {})'.format(
-                problem_index + 1, reference_answer, cal_ans))
-            return False
+            print('Problem {} ({}) correct ({:.2f}s)'.format(
+                problem_index + 1, sub_dir_name, time_taken))
+
+        return True
+    else:
+        print('Problem {} ({}) incorrect (ref: {} vs cal: {})'.format(
+            problem_index + 1, sub_dir_name, reference_answer, cal_ans))
+        return False
 
 
 def check_one(root_dir, reference_answers, problem_number):
@@ -63,10 +65,11 @@ def check_one(root_dir, reference_answers, problem_number):
     except IndexError:
         ref_answer = None
 
-    run_problem_result = run_problem(os.path.join(root_dir, problem_dir))
-    if not _check_problem_answer(problem_number - 1, ref_answer,
-                                 run_problem_result, print_answer=True):
-        exit(1)
+    run_problem_results = run_problem_set(os.path.join(root_dir, problem_dir))
+    for dir_name, run_problem_result in run_problem_results:
+        if not _check_problem_answer(dir_name, problem_number - 1, ref_answer,
+                                     run_problem_result, print_answer=True):
+            exit(1)
 
 
 def sorted_problems(root_dir):
@@ -74,6 +77,17 @@ def sorted_problems(root_dir):
         return int(os.path.basename(problem_dir)[7:])
     problems = glob.iglob(os.path.join(root_dir, 'problem[0-9]*'))
     return sorted(problems, key=key_fn)
+
+
+def run_problem_set(problem):
+    results = []
+    for dir_ in sorted(os.listdir(problem)):
+        path = os.path.join(problem, dir_)
+        if os.path.isdir(path):
+            dir_name = os.path.basename(path)
+            results.append((dir_name, run_problem(path)))
+    return results
+            
 
 
 def run_problem(problem):
