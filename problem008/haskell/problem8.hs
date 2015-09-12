@@ -14,4 +14,5 @@ main = do
      args <- getArgs
      let fname = args !! 0
      contents <- readFile fname
-     print $ maximum $ map substringProduct $ allSubs 13 contents
+     let numString = (lines contents) !! 0
+     print $ maximum $ map substringProduct $ allSubs 13 numString

@@ -1,10 +1,5 @@
 #!/bin/bash
 
 FNAME="../numbers.txt"
-
-if [ ! -f "$FNAME" ]
-then
-    ../getnumbers.sh "$FNAME"
-fi
-
+../getnumbers.sh "$FNAME"
 ./problem_13.py "$FNAME"
