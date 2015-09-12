@@ -1,2 +1,4 @@
 language: python
+install:
+ - cabal install primes
 script: "./tools/check.py"
