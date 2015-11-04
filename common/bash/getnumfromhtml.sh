@@ -29,4 +29,7 @@ if [[ -z $BREAKS ]]; then
     NUM=$(echo "$NUM" | tr -d "\n")
 fi
 
+# Remove any HTML tags
+NUM=$(echo "$NUM" | sed -e 's/<[^>]*>//g')
+
 echo "$NUM" > "$FNAME"

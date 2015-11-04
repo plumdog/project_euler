@@ -10,6 +10,7 @@ __pycache__/
 
 # problem specific
 problem008/number.txt
+problem011/matrix.txt
 problem013/numbers.txt
 problem022/names.txt
 problem042/words.txt
