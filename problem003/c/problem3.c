@@ -1,24 +1,6 @@
 #include <stdio.h>
+#include <prime.h>
 #include <math.h>
-
-
-int is_prime(long num) {
-        long numsqrt = (long) sqrt((double) num);
-        for (long trial = 2; trial <= numsqrt; ) {
-                if (num % trial == 0) {
-                        return 0;
-                }
-
-                // If the trial number if odd, then increment by
-                // 2. Otherwise (ie, it is 2) increment by 1.
-                if (trial % 2 == 1) {
-                        trial += 2;
-                } else {
-                        trial += 1;
-                }
-        }
-        return 1;
-}
 
 
 long largest_prime_factor(long num) {
