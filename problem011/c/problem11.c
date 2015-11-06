@@ -1,50 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#define SIZE 20
+#include <get_matrix.h>
+
 #define RUNSIZE 4
-#define BUFFER 80
 
-/**
- * Given a 2D array and a file, populate the array with the numbers
- * from the file, reading rows separated by newlines and columns
- * separated by spaces.
- */
-void get_grid_from_file(int grid[SIZE][SIZE], FILE *fr) {
-        char line[BUFFER];
-        int value;
-        char *num;
-        char *token;
-        char *rest;
-
-        int row = 0;
-        int col = 0;
-
-        while(fgets(line, BUFFER, fr) != NULL) {
-                // Replace newline terminated string with null
-                // terminated string.
-                char *pos;
-                if ((pos = strchr(line, '\n')) != NULL) {
-                        *pos = '\0';
-                }
-                col = 0;
-                rest = line;
-                for (token = strtok_r(line, " ", &rest); token; token = strtok_r(NULL, " ", &rest)) {
-                        grid[row][col] = atoi(token);
-                        col++;
-                }
-                row++;
-        }
-}
-
+int const SIZE = 20;
 
 /**
  * In the given 2D array of integers, a starting row and col, and a
  * row and col step, calculate the product of the numbers found by
  * starting from the starting row and col, and making RUNSIZE steps.
  */
-int run(int grid[SIZE][SIZE], int row, int col, int row_step, int col_step) {
+int run(int **grid, int row, int col, int row_step, int col_step) {
         int total = 1;
 
         for(int i = 0; i < RUNSIZE; ++i) {
@@ -76,7 +43,7 @@ int max_of_nums(int nums[RUNSIZE]) {
 }
 
 
-int max_run_from_pos(int grid[SIZE][SIZE], int row, int col) {
+int max_run_from_pos(int **grid, int row, int col) {
         int nums[RUNSIZE] = {
                 run(grid, row, col, 0, 1),  // West
                 run(grid, row, col, 1, 0),  // South
@@ -87,7 +54,11 @@ int max_run_from_pos(int grid[SIZE][SIZE], int row, int col) {
 }
 
 
-int max_run(int grid[SIZE][SIZE]) {
+int max_run(int **grid) {
+        if (!grid) {
+                return -1;
+        }
+
         int max_product = 0;
         for (int col = 0; col < SIZE; ++col) {
                 for (int row = 0; row < SIZE; ++row) {
@@ -102,11 +73,12 @@ int main(int argc, char *argv[]) {
         if (argc != 2) {
                 printf("Expected just one filename, %d given", argc - 1);
         }
-        FILE *fr;
+        FILE *fr = NULL;
         char *fname = argv[1];
-        // Initialise a SIZExSIZE array to zeroes 2D
-        int nums[SIZE][SIZE] = {{0}};
+
+        int **nums;
         fr = fopen(fname, "rt");
-        get_grid_from_file(nums, fr);
+        nums = get_grid_from_file(fr, SIZE);
+
         printf("%d\n", max_run(nums));
 }
