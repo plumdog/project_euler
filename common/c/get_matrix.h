@@ -1,1 +1,1 @@
-int **get_grid_from_file(FILE *fr, int size);
+int **get_grid_from_file(FILE *fr, int w, int h);

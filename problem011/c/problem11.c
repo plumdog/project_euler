@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 
         int **nums;
         fr = fopen(fname, "rt");
-        nums = get_grid_from_file(fr, SIZE);
+        nums = get_grid_from_file(fr, SIZE, SIZE);
 
         printf("%d\n", max_run(nums));
 }

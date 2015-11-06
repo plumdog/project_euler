@@ -9,17 +9,17 @@
  * from the file, reading rows separated by newlines and columns
  * separated by spaces.
  */
-int **get_grid_from_file(FILE *fr, int size) {
+int **get_grid_from_file(FILE *fr, int width, int height) {
         if (!fr) {
                 return NULL;
         }
         
         int **grid;
 
-        grid = (int **) malloc(size * sizeof(int*));
-        for (int row = 0; row < size; ++row) {
-                grid[row] = (int *) malloc(size * sizeof(int));
-                for (int col = 0; col < size; ++col) {
+        grid = (int **) malloc(height * sizeof(int*));
+        for (int row = 0; row < height; ++row) {
+                grid[row] = (int *) malloc(width * sizeof(int));
+                for (int col = 0; col < width; ++col) {
                         grid[row][col] = 0;
                 }
         }
