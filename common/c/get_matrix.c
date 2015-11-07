@@ -9,7 +9,9 @@
  * from the file, reading rows separated by newlines and columns
  * separated by spaces.
  */
-int **get_grid_from_file(FILE *fr, int width, int height) {
+int **get_grid_from_file(char *fname, int width, int height) {
+        FILE *fr = NULL;
+        fr = fopen(fname, "rt");
         if (!fr) {
                 return NULL;
         }

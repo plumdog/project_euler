@@ -73,12 +73,8 @@ int main(int argc, char *argv[]) {
         if (argc != 2) {
                 printf("Expected just one filename, %d given", argc - 1);
         }
-        FILE *fr = NULL;
-        char *fname = argv[1];
 
         int **nums;
-        fr = fopen(fname, "rt");
-        nums = get_grid_from_file(fr, SIZE, SIZE);
-
+        nums = get_grid_from_file(argv[1], SIZE, SIZE);
         printf("%d\n", max_run(nums));
 }
