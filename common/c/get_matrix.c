@@ -4,12 +4,8 @@
 
 #define BUFFER 80
 
-/**
- * Given a 2D array and a file, populate the array with the numbers
- * from the file, reading rows separated by newlines and columns
- * separated by spaces.
- */
-int **get_grid_from_file(char *fname, int width, int height) {
+
+int **get_grid_from_file_separator(char *fname, int width, int height, char *separator) {
         FILE *fr = NULL;
         fr = fopen(fname, "rt");
         if (!fr) {
@@ -42,13 +38,30 @@ int **get_grid_from_file(char *fname, int width, int height) {
                 if ((pos = strchr(line, '\n')) != NULL) {
                         *pos = '\0';
                 }
-                col = 0;
-                rest = line;
-                for (token = strtok_r(line, " ", &rest); token; token = strtok_r(NULL, " ", &rest)) {
-                        grid[row][col] = atoi(token);
-                        col++;
+
+                if (strlen(separator)) {
+                        col = 0;
+                        rest = line;
+                        for (token = strtok_r(line, separator, &rest); token; token = strtok_r(NULL, separator, &rest)) {
+                                grid[row][col] = atoi(token);
+                                col++;
+                        }
+                } else {
+                        for (col = 0; col < strlen(line); ++col) {
+                                grid[row][col] = line[col] - 48;
+                        }
                 }
                 row++;
         }
         return grid;
+}
+
+
+/**
+ * Given a 2D array and a file, populate the array with the numbers
+ * from the file, reading rows separated by newlines and columns
+ * separated by spaces.
+ */
+int **get_grid_from_file(char *fname, int width, int height) {
+        return get_grid_from_file_separator(fname, width, height, " ");
 }
