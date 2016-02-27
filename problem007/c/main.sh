@@ -12,4 +12,4 @@ main_options=(
     -lm -std=c99
 )
 
-gcc "${prime_options[@]}" && gcc problem7.c "${main_options[@]}" && ./problem7.out
+$CC "${prime_options[@]}" && gcc problem7.c "${main_options[@]}" && ./problem7.out

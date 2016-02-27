@@ -16,4 +16,4 @@ main_options=(
     -std=gnu99
 )
 
-gcc "${matrix_options[@]}" && gcc "${main_options[@]}" && ./problem13.out "$FNAME"
+$CC "${matrix_options[@]}" && gcc "${main_options[@]}" && ./problem13.out "$FNAME"

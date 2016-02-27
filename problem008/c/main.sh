@@ -9,4 +9,4 @@ main_options=(
     -std=gnu99
 )
 
-gcc "${main_options[@]}" && ./problem8.out "$FNAME"
+$CC "${main_options[@]}" && ./problem8.out "$FNAME"
