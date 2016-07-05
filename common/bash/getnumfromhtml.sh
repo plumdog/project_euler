@@ -13,12 +13,12 @@ HTML="`wget --no-check-certificate -qO- $URL`"
 
 # Trim from the start line to the end. (This could probably be made
 # neater.
-STARTLINE=$(($(echo "$HTML" | grep -n "$START" | gawk '{print $1}' FS=":") + 1))
+STARTLINE=$(($(echo "$HTML" | grep -n "$START" | sed -e 's/:.*//') + 1))
 ENDLINE=$(echo "$HTML" | wc -l)
 HTML=$(echo "$HTML" | sed -n "$STARTLINE,$ENDLINE""p")
 
 # Trim from the start to the first closing tag.
-ENDLINE=$(($(echo "$HTML" | grep -n "$END" | head -n 1 | gawk '{print $1}' FS=":")))
+ENDLINE=$(($(echo "$HTML" | grep -n "$END" | head -n 1 | sed -e 's/:.*//')))
 HTML=$(echo "$HTML" | sed -n "1,$ENDLINE""p" | sed -e 's|'$END'||')
 
 # Replace the <br />s with $BREAKS
