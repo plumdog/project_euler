@@ -5,7 +5,7 @@ env:
 before_install:
  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
  - sudo apt-get update -qq
- - sudo apt-get install -y cabal-install g++-4.8
+ - sudo apt-get install -y cabal-install g++-4.8 mono-dmcs
 install:
  - cabal update
  - cabal install primes

@@ -8,6 +8,9 @@
 # python
 __pycache__/
 
+# csharp
+*.exe
+
 # problem specific
 problem008/number.txt
 problem011/matrix.txt
